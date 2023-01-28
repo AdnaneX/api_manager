@@ -112,7 +112,7 @@ class ApiManagerImpl implements ApiManager {
     if (options == null) {
       options = Options();
     }
-    options = Options(headers: {"isauthrequired": isAuthRequired});
+    options = Options(headers: {"isAuthRequired": isAuthRequired});
 
     try {
       switch (requestType) {

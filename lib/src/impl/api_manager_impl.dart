@@ -118,11 +118,10 @@ class ApiManagerImpl implements ApiManager {
     if (options == null) {
       options = Options();
     }
-    options = Options(headers: {"isauthrequired": isAuthRequired});
+    options = Options(headers: {"isAuthRequired": isAuthRequired});
 
     try {
       switch (requestType) {
-
         /// http get request method
         case RequestType.GET:
           final response = await _dio.get(
@@ -141,6 +140,23 @@ class ApiManagerImpl implements ApiManager {
         /// http post request method
         case RequestType.POST:
           final response = await _dio.post(
+            route,
+            data: requestBody,
+            queryParameters: requestParams,
+            cancelToken: cancelToken,
+            options: options,
+            onSendProgress: onSendProgress,
+            onReceiveProgress: onReceiveProgress,
+          );
+          return _returnResponse<T>(
+            response,
+            responseBodySerializer,
+            responseBodyWrapper,
+          );
+
+        /// http post request method
+        case RequestType.PATCH:
+          final response = await _dio.patch(
             route,
             data: requestBody,
             queryParameters: requestParams,

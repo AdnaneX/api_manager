@@ -81,7 +81,7 @@ typedef M ResponseBodySerializer<M>(dynamic jsonMap);
 typedef Future<String> AuthTokenListener();
 
 /// Http request type
-enum RequestType { GET, POST, PUT, DELETE }
+enum RequestType { GET, POST, PUT, PATCH,  DELETE }
 
 /// Api status state
 enum ApiStatus { LOADING, SUCCESS, ERROR }

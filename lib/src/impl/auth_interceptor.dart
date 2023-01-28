@@ -10,12 +10,12 @@ class AuthInterceptor extends Interceptor {
   AuthTokenListener _authTokenListener;
 
   @override
-  Future onRequest(RequestOptions options) async {
+  Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     if (options != null &&
-        options.headers.containsKey("isauthrequired") &&
-        options.headers["isauthrequired"]) {
+        options.headers.containsKey("isAuthRequired") &&
+        options.headers["isAuthRequired"]) {
       if (_authTokenListener != null) {
-        options.headers.remove("isauthrequired");
+        options.headers.remove("isAuthRequired");
         String token = await _authTokenListener();
         options.headers.addAll({
           "Authorization": token,
